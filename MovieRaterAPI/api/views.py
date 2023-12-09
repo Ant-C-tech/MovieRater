@@ -13,8 +13,14 @@ class MovieViewSet(viewsets.ModelViewSet):
     # http://127.0.0.1:8000/api/movies/1/rate_movie/
     @action(detail=True, methods=["POST"])
     def rate_movie(self, request, pk=None):
-        response = {"message": "its working"}
-        return Response(response, status=status.HTTP_200_OK)
+        if "stars" in request.data:
+            movie = Movie.objects.get(id=pk)
+            print("movie title", movie.title)
+            response = {"message": "its working"}
+            return Response(response, status=status.HTTP_200_OK)
+        else:
+            response = {"message": "you need to provide stars"}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RatingViewSet(viewsets.ModelViewSet):
