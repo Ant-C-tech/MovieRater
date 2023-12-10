@@ -4,12 +4,14 @@ from rest_framework.decorators import action
 from .models import Movie, Rating
 from .serializers import MovieSerializer, RatingSerializer
 from django.contrib.auth.models import User
+from rest_framework.authentication import TokenAuthentication
 
 
 # Create your views here.
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
+    authentication_classes = (TokenAuthentication,)
 
     # http://127.0.0.1:8000/api/movies/1/rate_movie/
     @action(detail=True, methods=["POST"])
@@ -17,8 +19,7 @@ class MovieViewSet(viewsets.ModelViewSet):
         if "stars" in request.data:
             movie = Movie.objects.get(id=pk)
             stars = request.data["stars"]
-            # user = request.user
-            user = User.objects.get(id=1)  # hardcoded user(admin)
+            user = request.user
 
             try:
                 rating = Rating.objects.get(user=user.id, movie=movie.id)
@@ -41,3 +42,5 @@ class MovieViewSet(viewsets.ModelViewSet):
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
+    # This line was in video but it doesn't change anything, need to figure out why we need it
+    # authentication_classes = (TokenAuthentication,)
