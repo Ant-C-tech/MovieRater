@@ -4,7 +4,19 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [movies, setMovies] = useState([{ id: 1, title: 'Movie 1' }, { id: 2, title: 'Movie 2' }]);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/movies/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token 94df7a83ced3f398b7622adeac6b4f44320e3ae8'
+      },
+    }).then(resp => resp.json())
+      .then(resp => setMovies(resp))
+      .catch(error => console.log(error))
+  }, []);
 
   return (
     <div className="App">
