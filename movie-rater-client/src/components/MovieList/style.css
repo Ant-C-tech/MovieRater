@@ -1,0 +1,14 @@
+.movie-list {
+  padding-left: 0;
+}
+
+.movie-list-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.movie-list-item {
+  list-style-type: none;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
