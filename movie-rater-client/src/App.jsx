@@ -2,7 +2,7 @@ import './App.css';
 
 import { useState, useEffect } from 'react';
 
-import { MovieList } from './components/MovieList/index.jsx';
+import { MovieList, MovieDetails } from './components/';
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
       </header>
       <div className="layout">
         <MovieList movies={movies} setSelectedMovie={setSelectedMovie} />
-        <div className="">Movie Detail</div>
+        <MovieDetails selectedMovie={selectedMovie} />
       </div>
     </div>
   );
