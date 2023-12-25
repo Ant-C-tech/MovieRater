@@ -2,11 +2,12 @@ import './App.css';
 
 import { useState, useEffect } from 'react';
 
-import { MovieList } from './components/MovieList';
+import { MovieList } from './components/MovieList/index.jsx';
 
 function App() {
 
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/movies/', {
@@ -21,12 +22,12 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app-header">
         <h1>Movie Rater</h1>
       </header>
       <div className="layout">
-        <MovieList movies={movies} />
+        <MovieList movies={movies} setSelectedMovie={setSelectedMovie} />
         <div className="">Movie Detail</div>
       </div>
     </div>
