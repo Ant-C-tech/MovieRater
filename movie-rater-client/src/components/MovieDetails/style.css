@@ -2,3 +2,7 @@
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
 }
+
+.movie-details-colored-star {
+  color: #f5c518;
+}
