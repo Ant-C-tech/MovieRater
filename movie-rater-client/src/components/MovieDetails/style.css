@@ -1,8 +1,30 @@
+.movie-details {
+  padding: 10px;
+}
+
+.movie-details-content {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
 .movie-details-title {
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
 }
 
-.movie-details-colored-star {
-  color: #f5c518;
+.movie-details-content-description {
+  margin-bottom: 20px;
+}
+
+.movie-details-content-stars {
+  margin-bottom: 20px;
+}
+
+.movie-details-user-stars {
+  margin-bottom: 20px;
+}
+
+.user-rating-stars {
+  cursor: pointer;
 }
