@@ -2,7 +2,7 @@ import "./style.css";
 
 export const MovieList = ({ movies, setSelectedMovie }) => {
   return (
-    <div>
+    <div className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
       <ul className='movie-list'>
         {movies && movies.map(movie => {
