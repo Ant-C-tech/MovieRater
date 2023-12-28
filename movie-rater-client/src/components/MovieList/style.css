@@ -16,3 +16,7 @@
   margin-bottom: 15px;
   cursor: pointer;
 }
+
+.movie-list-item-icon {
+  margin-right: 10px;
+}
