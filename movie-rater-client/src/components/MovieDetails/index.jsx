@@ -18,10 +18,6 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
     setTemporaryUserRating(0)
   }, [selectedMovieId])
 
-  useEffect(() => {
-    console.log('movies', movies);
-  }, [movies])
-
   if (selectedMovieId) {
     return (
       <div className="movie-details">

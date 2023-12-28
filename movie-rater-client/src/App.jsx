@@ -20,11 +20,6 @@ function App() {
     storeMovies();
   }, []);
 
-  useEffect(() => {
-    console.log('App movies', movies);
-  }
-    , [movies]);
-
   return (
     <div className="app">
       <header className="app-header">
