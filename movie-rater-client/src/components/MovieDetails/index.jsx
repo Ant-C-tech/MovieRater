@@ -8,10 +8,12 @@ import { faStar as lightStar } from '@fortawesome/free-regular-svg-icons'
 import { Button } from "react-bulma-components";
 
 export const MovieDetails = ({ selectedMovie }) => {
+  const [temporaryUserRating, setTemporaryUserRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
 
   useEffect(() => {
     setUserRating(0)
+    setTemporaryUserRating(0)
   }, [selectedMovie])
 
   const rateMovie = () => {
@@ -52,7 +54,16 @@ export const MovieDetails = ({ selectedMovie }) => {
           <div className='movie-details-user-stars'>
             {Array.from({ length: 10 }).map((_, index) => {
               return (
-                <FontAwesomeIcon className='user-rating-stars' key={index} icon={userRating >= index ? solidStar : lightStar} onMouseEnter={() => setUserRating(index)} />
+                <FontAwesomeIcon
+                  className='user-rating-stars'
+                  key={index} icon={temporaryUserRating >= index ? solidStar : lightStar}
+                  onMouseEnter={() => setTemporaryUserRating(index)}
+                  onMouseLeave={() => setTemporaryUserRating(userRating)}
+                  onClick={() => {
+                    setTemporaryUserRating(index)
+                    setUserRating(index)
+                  }
+                  } />
               )
             })}
           </div>
