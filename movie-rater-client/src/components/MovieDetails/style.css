@@ -10,7 +10,8 @@
 
 .movie-details-title {
   padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid chartreuse;
+  font-size: 24px;
 }
 
 .movie-details-content-description {
@@ -25,6 +26,28 @@
   margin-bottom: 20px;
 }
 
+.star-icon {
+  color: chartreuse;
+}
+
 .user-rating-stars {
   cursor: pointer;
+}
+
+.rate-movie-button {
+  height: auto !important;
+
+  margin: 0 10px;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+
+  border-color: inherit !important;
+  border-width: 2px !important;
+
+  will-change: border-color;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.rate-movie-button:hover {
+  border-color: chartreuse !important;
 }
