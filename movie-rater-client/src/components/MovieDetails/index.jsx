@@ -29,7 +29,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
           <p className='movie-details-content-stars'>
             {Array.from({ length: 10 }).map((_, index) => {
               return (
-                <FontAwesomeIcon key={index} icon={
+                <FontAwesomeIcon className='star-icon' key={index} icon={
                   movies.find(movie => movie.id === selectedMovieId).average_rating >= index + 1 ? solidStar
                     : lightStar} />
               )
@@ -44,7 +44,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
             {Array.from({ length: 10 }).map((_, index) => {
               return (
                 <FontAwesomeIcon
-                  className='user-rating-stars'
+                  className='star-icon user-rating-stars'
                   key={index} icon={temporaryUserRating > index ? solidStar : lightStar}
                   onMouseEnter={() => setTemporaryUserRating(index + 1)}
                   onMouseLeave={() => setTemporaryUserRating(userRating)}

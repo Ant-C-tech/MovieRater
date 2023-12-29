@@ -1,0 +1,9 @@
+.movie-edit-form {
+  padding: 10px;
+}
+
+.movie-edit-form-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid chartreuse;
+  font-size: 24px;
+}

@@ -11,6 +11,16 @@
   font-size: calc(10px + 2vmin);
 }
 
+.app-title-icon {
+  font-size: 32px;
+  color: chartreuse;
+  transform: rotate(20deg);
+}
+
+.app-title {
+  font-size: 32px;
+}
+
 .layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
