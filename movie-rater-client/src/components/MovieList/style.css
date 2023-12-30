@@ -34,21 +34,3 @@
   display: flex;
   justify-content: center;
 }
-
-.movie-control {
-  height: auto !important;
-
-  margin: 0 10px;
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-
-  border-color: inherit !important;
-  border-width: 2px !important;
-
-  will-change: border-color;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.movie-control:hover {
-  border-color: chartreuse !important;
-}

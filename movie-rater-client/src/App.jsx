@@ -1,3 +1,4 @@
+import 'normalize.css';
 import './App.css';
 
 import { useState, useEffect } from 'react';
@@ -22,8 +23,6 @@ function App() {
   useEffect(() => {
     storeMovies();
   }, []);
-
-
 
   return (
     <div className="app">

@@ -1,4 +1,4 @@
-.movie-edit-form {
+.movie-edit-form-wrapper {
   padding: 10px;
 }
 
@@ -6,4 +6,13 @@
   padding-bottom: 10px;
   border-bottom: 1px solid chartreuse;
   font-size: 24px;
+}
+
+.movie-edit-form {
+  padding-top: 10px;
+}
+
+.movie-edit-form-label {
+  color: white;
+  font-weight: normal;
 }

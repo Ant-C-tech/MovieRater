@@ -1,5 +1,5 @@
 .app {
-  height: calc(100vh - 40px);
+  height: 100vh;
   max-height: 100vh;
   padding: 20px;
   background-color: #282c34;
@@ -26,4 +26,28 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   text-align: center;
+}
+
+/* Button */
+
+.button {
+  height: auto !important;
+
+  margin: 0 10px;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+
+  border-color: inherit !important;
+  border-width: 2px !important;
+
+  will-change: border-color;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  border-color: chartreuse !important;
+}
+
+.button-icon {
+  margin: 0 10px;
 }
