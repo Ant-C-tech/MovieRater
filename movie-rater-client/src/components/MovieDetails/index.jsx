@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as lightStar } from '@fortawesome/free-regular-svg-icons'
+import { faStarHalfStroke as solidHalfStar } from '@fortawesome/free-regular-svg-icons';
 import { Button } from "react-bulma-components";
 
 import { getMovies, rateMovie } from "../../api/";
+import { getMovieById } from '../../utils/getMovieById';
 
 export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
   const [temporaryUserRating, setTemporaryUserRating] = useState(0);
@@ -30,13 +32,13 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
             {Array.from({ length: 10 }).map((_, index) => {
               return (
                 <FontAwesomeIcon className='star-icon' key={index} icon={
-                  movies.find(movie => movie.id === selectedMovieId).average_rating >= index + 1 ? solidStar
+                  getMovieById(selectedMovieId, movies).average_rating >= index + 1 ? solidStar
                     : lightStar} />
               )
             })}
           </p>
           <p className='movie-details-content-ratings'>
-            <b>Number of ratings: {movies.find(movie => movie.id === selectedMovieId).number_of_ratings}</b>
+            <b>Number of ratings: {getMovieById(selectedMovieId, movies).number_of_ratings}</b>
           </p>
         </div>
         <div className='movie-details-user-rating-control'>
@@ -56,7 +58,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
               )
             })}
           </div>
-          <Button className='rate-movie-button' onClick={
+          <Button className='button' onClick={
             () => {
               rateMovie(selectedMovieId, userRating).then(() => {
                 getMovies()
@@ -65,6 +67,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
               }).catch(error => console.log(error))
             }
           }>
+            <FontAwesomeIcon className='button-icon' icon={solidHalfStar} />
             Rate the Movie
           </Button>
         </div>

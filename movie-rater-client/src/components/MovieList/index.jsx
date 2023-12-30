@@ -30,14 +30,14 @@ export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEdit
                 </span>
               </div>
               <div className="movie-controls">
-                <Button className='movie-control' onClick={() => {
+                <Button className='button' onClick={() => {
                   setSelectedMovieId(movie.id)
                   setEditedMovieId(movie.id)
                 }}>
-                  <FontAwesomeIcon className='movie-control-icon' icon={solidEdit} />
+                  <FontAwesomeIcon className='button-icon' icon={solidEdit} />
                 </Button>
-                <Button className='movie-control'>
-                  <FontAwesomeIcon className='movie-control-icon' icon={solidTrash} />
+                <Button className='button'>
+                  <FontAwesomeIcon className='button-icon' icon={solidTrash} />
                 </Button>
               </div>
             </li>

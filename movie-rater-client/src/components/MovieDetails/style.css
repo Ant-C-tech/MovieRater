@@ -33,21 +33,3 @@
 .user-rating-stars {
   cursor: pointer;
 }
-
-.rate-movie-button {
-  height: auto !important;
-
-  margin: 0 10px;
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-
-  border-color: inherit !important;
-  border-width: 2px !important;
-
-  will-change: border-color;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.rate-movie-button:hover {
-  border-color: chartreuse !important;
-}
