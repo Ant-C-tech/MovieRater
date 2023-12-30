@@ -10,6 +10,7 @@ import { Button } from "react-bulma-components";
 
 import { getMovies, rateMovie } from "../../api/";
 import { getMovieById } from '../../utils/getMovieById';
+import { API } from '../../api';
 
 export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
   const [temporaryUserRating, setTemporaryUserRating] = useState(0);
@@ -59,14 +60,13 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
             })}
           </div>
           <Button className='button' onClick={
-            () => {
-              rateMovie(selectedMovieId, userRating).then(() => {
-                getMovies()
-                  .then(movies => setMovies(movies))
-                  .catch(error => console.log(error))
-              }).catch(error => console.log(error))
-            }
-          }>
+            async () => {
+              await API.rateMovie(selectedMovieId, { stars: userRating })
+              await API.getMovies()
+                .then(movies => setMovies(movies))
+                .catch(error => console.log(error))
+            }}
+          >
             <FontAwesomeIcon className='button-icon' icon={solidHalfStar} />
             Rate the Movie
           </Button>
