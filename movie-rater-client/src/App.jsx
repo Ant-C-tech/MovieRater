@@ -7,7 +7,7 @@ import { faFilm as solidFilm } from '@fortawesome/free-solid-svg-icons'
 
 import { MovieList, MovieDetails, MovieEditForm } from './components/';
 
-import { getMovies } from './api/';
+import { API } from './api';
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
   const [editedMovieId, setEditedMovieId] = useState(null);
 
   const storeMovies = async () => {
-    const movies = await getMovies();
+    const movies = await API.getMovies();
     setMovies(movies);
   }
 
@@ -41,6 +41,7 @@ function App() {
         {editedMovieId ?
           <MovieEditForm
             editedMovieId={editedMovieId}
+            setEditedMovieId={setEditedMovieId}
             movies={movies}
             setMovies={setMovies} />
           :

@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFloppyDisk as solidFloppy } from '@fortawesome/free-solid-svg-icons'
 
 import { getMovieById } from '../../utils/getMovieById';
+import { API } from '../../api';
 
 const { Field, Label, Input, Textarea, Control } = Form;
 
-export const MovieEditForm = ({ editedMovieId, movies, setMovies }) => {
+export const MovieEditForm = ({ editedMovieId, setEditedMovieId, movies, setMovies }) => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -51,7 +52,21 @@ export const MovieEditForm = ({ editedMovieId, movies, setMovies }) => {
             />
           </Control>
         </Field>
-        <Button className='button'>
+        <Button
+          className='button'
+          onClick={async () => {
+            const movie = getMovieById(editedMovieId, movies);
+            const updatedMovie = {
+              ...movie,
+              title,
+              description
+            }
+            await API.updateMovie(editedMovieId, updatedMovie);
+            await API.getMovies()
+              .then(movies => setMovies(movies)).then(() => setEditedMovieId(null))
+              .catch(error => console.log(error))
+          }}
+        >
           <FontAwesomeIcon className='button-icon' icon={solidFloppy} />
           Save
         </Button>
