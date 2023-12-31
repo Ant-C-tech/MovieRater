@@ -14,7 +14,7 @@ export class API {
   }
 
   static async rateMovie(id, body) {
-    const response = fetch(`${API_URL}/movies/${id}/rate_movie/`, {
+    const response = await fetch(`${API_URL}/movies/${id}/rate_movie/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,10 +22,11 @@ export class API {
       },
       body: JSON.stringify(body)
     });
+    return response;
   }
 
   static async updateMovie(id, body) {
-    return fetch(`${API_URL}/movies/${id}/`, {
+    const response = await fetch(`${API_URL}/movies/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -33,5 +34,6 @@ export class API {
       },
       body: JSON.stringify(body)
     });
+    return response;
   }
 }

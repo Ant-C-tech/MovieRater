@@ -61,16 +61,20 @@ export const MovieEditForm = ({ editedMovieId, setEditedMovieId, movies, setMovi
               title,
               description
             }
-            await API.updateMovie(editedMovieId, updatedMovie);
-            await API.getMovies()
-              .then(movies => setMovies(movies)).then(() => setEditedMovieId(null))
-              .catch(error => console.log(error))
+            try {
+              await API.updateMovie(editedMovieId, updatedMovie);
+              const movies = await API.getMovies()
+              setMovies(movies)
+              setEditedMovieId(null)
+            } catch (error) {
+              console.log(error)
+            }
           }}
         >
           <FontAwesomeIcon className='button-icon' icon={solidFloppy} />
           Save
         </Button>
       </div>
-    </div>
+    </div >
   )
 }
