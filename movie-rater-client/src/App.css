@@ -11,14 +11,27 @@
   font-size: calc(10px + 2vmin);
 }
 
-.app-title-icon {
+.app-title {
+  margin-bottom: 10px;
   font-size: 32px;
-  color: chartreuse;
-  transform: rotate(20deg);
 }
 
-.app-title {
+.app-title-logo {
   font-size: 32px;
+  color: #48c78e;
+  /* transform: translate(0, -50%); */
+
+  animation: rotation 3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 .layout {
@@ -28,9 +41,20 @@
   text-align: center;
 }
 
+/* MovieForm */
+.movie-form-wrapper {
+  padding: 10px;
+}
+
+.movie-form-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #48c78e;
+  font-size: 24px;
+}
+
 /* Button */
 
-.button {
+.button-custom {
   height: auto !important;
 
   margin: 0 10px;
@@ -44,8 +68,30 @@
   transition: border-color 0.3s ease-in-out;
 }
 
-.button:hover {
-  border-color: chartreuse !important;
+.button-custom:hover {
+  border-color: #48c78e !important;
+}
+
+.button-success {
+  width: 40px !important;
+  height: 40px !important;
+
+  margin: 0 10px;
+
+  border-color: inherit !important;
+  border-radius: 50% !important;
+
+  will-change: border-color;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.button-success .button-icon {
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.button-success:hover .button-icon {
+  transform: rotate(180deg);
 }
 
 .button-icon {

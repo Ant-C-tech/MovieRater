@@ -11,7 +11,7 @@ import { Button } from "react-bulma-components";
 import { getMovieById } from '../../utils/getMovieById';
 import { API } from '../../api';
 
-export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
+export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreatingMovie }) => {
   const [temporaryUserRating, setTemporaryUserRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
 
@@ -58,14 +58,15 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
               )
             })}
           </div>
-          <Button className='button' onClick={
+          <Button className='button-custom' onClick={
             async () => {
               try {
                 await API.rateMovie(selectedMovieId, { stars: userRating });
                 const movies = await API.getMovies();
                 setMovies(movies);
+                setIsCreatingMovie(false);
               } catch (error) {
-                console.log(error);
+                console.error('There was a problem with the rate operation: ', error);
               }
             }}
           >

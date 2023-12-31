@@ -10,7 +10,7 @@
 
 .movie-details-title {
   padding-bottom: 10px;
-  border-bottom: 1px solid chartreuse;
+  border-bottom: 1px solid #48c78e;
   font-size: 24px;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .star-icon {
-  color: chartreuse;
+  color: #48c78e;
 }
 
 .user-rating-stars {

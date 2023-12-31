@@ -4,7 +4,7 @@
 
 .movie-list-title {
   padding-bottom: 10px;
-  border-bottom: 1px solid chartreuse;
+  border-bottom: 1px solid #48c78e;
   font-size: 24px;
 }
 
@@ -26,7 +26,7 @@
 
 .movie-list-item-icon {
   margin-right: 10px;
-  color: chartreuse;
+  color: #48c78e;
 }
 
 .movie-controls {

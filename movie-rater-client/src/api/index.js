@@ -22,6 +22,11 @@ export class API {
       },
       body: JSON.stringify(body)
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     return response;
   }
 
@@ -34,6 +39,28 @@ export class API {
       },
       body: JSON.stringify(body)
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     return response;
+  }
+
+  static async createMovie(body) {
+    const response = await fetch(`${API_URL}/movies/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${TOKEN}`
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
   }
 }
