@@ -6,8 +6,7 @@ import { faEdit as solidEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash as solidTrash } from '@fortawesome/free-solid-svg-icons'
 import { Button } from "react-bulma-components";
 
-export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEditedMovieId }) => {
-
+export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEditedMovieId, setIsCreatingMovie }) => {
   return (
     <div className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
@@ -17,7 +16,7 @@ export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEdit
             <li className='movie-list-item'
               key={movie.id}
             >
-              <div className="movie-list-item-text">
+              <div className="movie-list-item-content">
                 {selectedMovieId === movie.id &&
                   <FontAwesomeIcon className='movie-list-item-icon' icon={solidCheck} />
                 }
@@ -25,18 +24,19 @@ export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEdit
                   onClick={() => {
                     setSelectedMovieId(movie.id)
                     setEditedMovieId(null)
+                    setIsCreatingMovie(false)
                   }}>
                   {movie.title}
                 </span>
               </div>
               <div className="movie-controls">
-                <Button className='button' onClick={() => {
+                <Button className='button-custom' onClick={() => {
                   setSelectedMovieId(movie.id)
                   setEditedMovieId(movie.id)
                 }}>
                   <FontAwesomeIcon className='button-icon' icon={solidEdit} />
                 </Button>
-                <Button className='button'>
+                <Button className='button-custom'>
                   <FontAwesomeIcon className='button-icon' icon={solidTrash} />
                 </Button>
               </div>
