@@ -63,9 +63,14 @@ export const MovieEditForm = ({ editedMovieId, setEditedMovieId, movies, setMovi
             }
             try {
               await API.updateMovie(editedMovieId, updatedMovie);
-              const movies = await API.getMovies()
-              setMovies(movies)
-              setEditedMovieId(null)
+              const updatedMovies = movies.map(movie => {
+                if (movie.id === updatedMovie.id) {
+                  return updatedMovie;
+                }
+                return movie;
+              });
+              setMovies(updatedMovies);
+              setEditedMovieId(null);
             } catch (error) {
               console.log(error)
             }
