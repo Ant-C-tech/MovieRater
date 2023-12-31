@@ -8,7 +8,6 @@ import { faStar as lightStar } from '@fortawesome/free-regular-svg-icons'
 import { faStarHalfStroke as solidHalfStar } from '@fortawesome/free-regular-svg-icons';
 import { Button } from "react-bulma-components";
 
-import { getMovies, rateMovie } from "../../api/";
 import { getMovieById } from '../../utils/getMovieById';
 import { API } from '../../api';
 
@@ -61,10 +60,13 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies }) => {
           </div>
           <Button className='button' onClick={
             async () => {
-              await API.rateMovie(selectedMovieId, { stars: userRating })
-              await API.getMovies()
-                .then(movies => setMovies(movies))
-                .catch(error => console.log(error))
+              try {
+                await API.rateMovie(selectedMovieId, { stars: userRating });
+                const movies = await API.getMovies();
+                setMovies(movies);
+              } catch (error) {
+                console.log(error);
+              }
             }}
           >
             <FontAwesomeIcon className='button-icon' icon={solidHalfStar} />
