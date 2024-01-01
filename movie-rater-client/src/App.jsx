@@ -1,4 +1,5 @@
 import 'normalize.css';
+import 'bulma/css/bulma.min.css';
 import './App.css';
 
 import { useState, useEffect } from 'react';

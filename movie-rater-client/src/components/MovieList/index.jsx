@@ -9,6 +9,19 @@ import { Button } from "react-bulma-components";
 import { API } from '../../api';
 
 export const MovieList = ({ movies, setMovies, selectedMovieId, setSelectedMovieId, setEditedMovieId, setIsCreatingMovie }) => {
+
+  const deleteMovie = async (movieId) => {
+    try {
+      await API.deleteMovie(movieId);
+      setMovies(movies.filter(m => m.id !== movieId));
+      setSelectedMovieId(null);
+      setEditedMovieId(null);
+      setIsCreatingMovie(false);
+    } catch (error) {
+      console.error('There was a problem with the delete operation: ', error);
+    }
+  };
+
   return (
     <div className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
@@ -39,17 +52,7 @@ export const MovieList = ({ movies, setMovies, selectedMovieId, setSelectedMovie
                   <FontAwesomeIcon className='button-icon' icon={solidEdit} />
                 </Button>
                 <Button className='button-custom' onClick={
-                  async () => {
-                    try {
-                      await API.deleteMovie(movie.id);
-                      setMovies(movies.filter(m => m.id !== movie.id));
-                      setSelectedMovieId(null);
-                      setEditedMovieId(null);
-                      setIsCreatingMovie(false);
-                    } catch (error) {
-                      console.error('There was a problem with the delete operation: ', error);
-                    }
-                  }
+                  () => deleteMovie(movie.id)
                 }>
                   <FontAwesomeIcon className='button-icon' icon={solidTrash} />
                 </Button>
