@@ -20,6 +20,17 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreating
     setTemporaryUserRating(0)
   }, [selectedMovieId])
 
+  const rateMovie = async (movieId) => {
+    try {
+      await API.rateMovie(movieId, { stars: userRating });
+      const movies = await API.getMovies();
+      setMovies(movies);
+      setIsCreatingMovie(false);
+    } catch (error) {
+      console.error('There was a problem with the rate operation: ', error);
+    }
+  };
+
   if (selectedMovieId) {
     return (
       <div className="movie-details">
@@ -59,16 +70,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreating
             })}
           </div>
           <Button className='button-custom' onClick={
-            async () => {
-              try {
-                await API.rateMovie(selectedMovieId, { stars: userRating });
-                const movies = await API.getMovies();
-                setMovies(movies);
-                setIsCreatingMovie(false);
-              } catch (error) {
-                console.error('There was a problem with the rate operation: ', error);
-              }
-            }}
+            () => rateMovie(selectedMovieId)}
           >
             <FontAwesomeIcon className='button-icon' icon={solidHalfStar} />
             Rate the Movie
