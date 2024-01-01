@@ -6,7 +6,9 @@ import { faEdit as solidEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash as solidTrash } from '@fortawesome/free-solid-svg-icons'
 import { Button } from "react-bulma-components";
 
-export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEditedMovieId, setIsCreatingMovie }) => {
+import { API } from '../../api';
+
+export const MovieList = ({ movies, setMovies, selectedMovieId, setSelectedMovieId, setEditedMovieId, setIsCreatingMovie }) => {
   return (
     <div className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
@@ -36,7 +38,19 @@ export const MovieList = ({ movies, selectedMovieId, setSelectedMovieId, setEdit
                 }}>
                   <FontAwesomeIcon className='button-icon' icon={solidEdit} />
                 </Button>
-                <Button className='button-custom'>
+                <Button className='button-custom' onClick={
+                  async () => {
+                    try {
+                      await API.deleteMovie(movie.id);
+                      setMovies(movies.filter(m => m.id !== movie.id));
+                      setSelectedMovieId(null);
+                      setEditedMovieId(null);
+                      setIsCreatingMovie(false);
+                    } catch (error) {
+                      console.error('There was a problem with the delete operation: ', error);
+                    }
+                  }
+                }>
                   <FontAwesomeIcon className='button-icon' icon={solidTrash} />
                 </Button>
               </div>

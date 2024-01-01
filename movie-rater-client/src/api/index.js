@@ -63,4 +63,20 @@ export class API {
 
     return await response.json();
   }
+
+  static async deleteMovie(id) {
+    const response = await fetch(`${API_URL}/movies/${id}/`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${TOKEN}`
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response;
+  }
 }

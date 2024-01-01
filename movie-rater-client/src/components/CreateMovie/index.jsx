@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus as solidPlus } from '@fortawesome/free-solid-svg-icons'
 
 import { API } from '../../api';
-// import { getMovieById } from '../../utils/getMovieById';
 import { MovieForm } from '../MovieForm';
 
 export const CreateMovie = ({ movies, setMovies, setIsCreatingMovie }) => {

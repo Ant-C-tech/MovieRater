@@ -44,6 +44,7 @@ function App() {
       <div className="layout">
         <MovieList
           movies={movies}
+          setMovies={setMovies}
           selectedMovieId={selectedMovieId}
           setSelectedMovieId={setSelectedMovieId}
           setEditedMovieId={setEditedMovieId}
