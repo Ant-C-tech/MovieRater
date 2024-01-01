@@ -1,4 +1,3 @@
-import 'bulma/css/bulma.min.css';
 import "./style.css";
 
 import { useState, useEffect } from "react";
