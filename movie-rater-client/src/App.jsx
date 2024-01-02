@@ -26,12 +26,11 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <FontAwesomeIcon className='app-title-logo' icon={solidFilm} />
-        <h1 className='app-title'> Movie Rater</h1>
+        <h1 className='app-title'> Movie  <FontAwesomeIcon className='app-title-logo' icon={solidFilm} />  Rater</h1>
       </header>
       <Box style={{
-        height: '83vh',
-        maxHeight: '83vh',
+        height: '90vh',
+        maxHeight: '90vh',
         backgroundColor: 'inherit',
         border: '1px solid #48c78e',
         color: '#ccc',

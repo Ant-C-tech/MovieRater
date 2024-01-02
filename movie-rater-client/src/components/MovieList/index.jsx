@@ -33,8 +33,8 @@ export const MovieList = ({
       className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
       <ul className='movie-list' style={{
-        height: '65vh',
-        maxHeight: '65vh',
+        height: '72vh',
+        maxHeight: '72vh',
       }}>
         {movies && movies.map(movie => {
           return (
