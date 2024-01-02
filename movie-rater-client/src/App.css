@@ -7,6 +7,7 @@
 }
 
 .app-header {
+  height: 12vh;
   text-align: center;
   font-size: calc(10px + 2vmin);
 }
@@ -19,8 +20,6 @@
 .app-title-logo {
   font-size: 32px;
   color: #48c78e;
-  /* transform: translate(0, -50%); */
-
   animation: rotation 3s infinite linear;
 }
 
@@ -32,68 +31,4 @@
   to {
     transform: rotate(359deg);
   }
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-  text-align: center;
-}
-
-/* MovieForm */
-.movie-form-wrapper {
-  padding: 10px;
-}
-
-.movie-form-title {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #48c78e;
-  font-size: 24px;
-}
-
-/* Button */
-
-.button-custom {
-  height: auto !important;
-
-  margin: 0 10px;
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-
-  border-color: inherit !important;
-  border-width: 2px !important;
-
-  will-change: border-color;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.button-custom:hover {
-  border-color: #48c78e !important;
-}
-
-.button-success {
-  width: 40px !important;
-  height: 40px !important;
-
-  margin: 0 10px;
-
-  border-color: inherit !important;
-  border-radius: 50% !important;
-
-  will-change: border-color;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.button-success .button-icon {
-  transform: rotate(0deg);
-  transition: transform 0.5s ease-in-out;
-}
-
-.button-success:hover .button-icon {
-  transform: rotate(180deg);
-}
-
-.button-icon {
-  margin: 0 10px;
 }

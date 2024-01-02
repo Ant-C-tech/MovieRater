@@ -9,7 +9,29 @@
 }
 
 .movie-list {
-  padding: 10px;
+  display: block;
+  margin: 10px 0;
+  padding-right: 30px;
+  overflow-y: auto;
+}
+
+/*customize scroll*/
+.movie-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.movie-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.movie-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.movie-list::-webkit-scrollbar-thumb:hover {
+  background: #48c78e;
 }
 
 .movie-list-item {
