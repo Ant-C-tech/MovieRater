@@ -8,7 +8,13 @@ import { Button } from "react-bulma-components";
 
 import { API } from '../../api';
 
-export const MovieList = ({ movies, setMovies, selectedMovieId, setSelectedMovieId, setEditedMovieId, setIsCreatingMovie }) => {
+export const MovieList = ({
+  movies,
+  setMovies,
+  selectedMovieId,
+  setSelectedMovieId,
+  setEditedMovieId,
+  setIsCreatingMovie }) => {
 
   const deleteMovie = async (movieId) => {
     try {
@@ -23,9 +29,13 @@ export const MovieList = ({ movies, setMovies, selectedMovieId, setSelectedMovie
   };
 
   return (
-    <div className='movie-list-wrapper'>
+    <div
+      className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
-      <ul className='movie-list'>
+      <ul className='movie-list' style={{
+        height: '72vh',
+        maxHeight: '72vh',
+      }}>
         {movies && movies.map(movie => {
           return (
             <li className='movie-list-item'

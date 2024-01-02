@@ -16,6 +16,7 @@ export const MovieForm = ({ title = '', setTitle, description = '', setDescripti
             value={title}
             placeholder='e.g. The Godfather'
             type="text"
+            maxLength={32}
             onChange={(event) => setTitle(event.target.value)}
           />
         </Control>
@@ -30,6 +31,7 @@ export const MovieForm = ({ title = '', setTitle, description = '', setDescripti
             placeholder='e.g. The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.'
             type="text"
             rows={6}
+            maxLength={360}
             onChange={(event) => setDescription(event.target.value)}
           />
         </Control>
