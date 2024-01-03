@@ -21,6 +21,22 @@ code {
     monospace;
 }
 
+/*Form*/
+input,
+textarea {
+  background-color: #ccc !important;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid #48c78e !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6e6e6e !important;
+}
+
 /* MovieForm */
 .movie-form-wrapper {
   padding: 10px;
@@ -43,6 +59,8 @@ code {
 
   border-color: inherit !important;
   border-width: 2px !important;
+
+  background-color: #ccc !important;
 
   will-change: border-color;
   transition: border-color 0.3s ease-in-out;

@@ -1,4 +1,5 @@
 const API_URL = 'http://127.0.0.1:8000/api';
+const AUTH_URL = 'http://127.0.0.1:8000/auth';
 const TOKEN = '94df7a83ced3f398b7622adeac6b4f44320e3ae8';
 
 export class API {
@@ -78,5 +79,21 @@ export class API {
     }
 
     return response;
+  }
+
+  static async loginUser(body) {
+    const response = await fetch(`${AUTH_URL}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
   }
 }

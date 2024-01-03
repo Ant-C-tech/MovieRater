@@ -1,0 +1,15 @@
+.auth-wrapper {
+  margin: 10px 0 20px;
+}
+
+.auth-form-title {
+  color: white;
+  font-size: 32px;
+  border-bottom: 1px solid #48c78e;
+  margin-bottom: 20px;
+}
+
+.auth-form-label {
+  color: white;
+  font-weight: normal;
+}
