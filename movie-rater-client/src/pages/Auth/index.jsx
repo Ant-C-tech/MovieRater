@@ -1,26 +1,35 @@
 import "./style.css";
 
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket as solidRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { Button, Form, Box } from 'react-bulma-components';
 
 import { API } from '../../api/';
+import { TokenContext } from '../../App';
 
 const { Field, Label, Input, Control } = Form;
 
-const loginUser = async (username, password) => {
-  try {
-    const response = await API.loginUser({ username, password });
-    console.log('User logged in successfully. Token: ', response.token);
-  } catch (error) {
-    console.error('There was a problem with the login operation: ', error);
-  }
-};
-
 export const Auth = () => {
+  const { token, setToken } = useContext(TokenContext);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (token) {
+      window.location.href = '/';
+    }
+  }, [token]);
+
+  const loginUser = async () => {
+    try {
+      const response = await API.loginUser({ username, password });
+      setToken(response.token);
+    } catch (error) {
+      console.error('There was a problem with the login operation: ', error);
+    }
+  };
 
   return (
     <div className='auth-wrapper'>
@@ -62,9 +71,7 @@ export const Auth = () => {
         </Field>
       </Box>
       <div className='auth-controls'>
-        <Button className='button-custom' onClick={
-          () => loginUser(username, password)
-        }>
+        <Button className='button-custom' onClick={loginUser}>
           <FontAwesomeIcon className='button-icon' icon={solidRightToBracket} />
           Login
         </Button>

@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus as solidPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Columns } from 'react-bulma-components';
@@ -7,8 +7,11 @@ import { Button, Columns } from 'react-bulma-components';
 
 import { MovieList, MovieDetails, EditMovie, CreateMovie } from '../../components/';
 import { API } from '../../api/';
+import { TokenContext } from '../../App';
 
 export const Main = () => {
+  const { token } = useContext(TokenContext);
+
   const [movies, setMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [editedMovieId, setEditedMovieId] = useState(null);
@@ -25,7 +28,7 @@ export const Main = () => {
 
   return (
     <>
-      <Button className='button-success' color="success" onClick={() => {
+      {token && <Button className='button-success' color="success" onClick={() => {
         setSelectedMovieId(null);
         setEditedMovieId(null);
         setIsCreatingMovie(true);
@@ -33,6 +36,7 @@ export const Main = () => {
       }>
         <FontAwesomeIcon className='button-icon' icon={solidPlus} />
       </Button>
+      }
       <Columns>
         <Columns.Column>
           <MovieList

@@ -1,6 +1,6 @@
 const API_URL = 'http://127.0.0.1:8000/api';
 const AUTH_URL = 'http://127.0.0.1:8000/auth';
-const TOKEN = '94df7a83ced3f398b7622adeac6b4f44320e3ae8';
+// const TOKEN = '94df7a83ced3f398b7622adeac6b4f44320e3ae8';
 
 export class API {
   static async getMovies() {
@@ -8,18 +8,17 @@ export class API {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${TOKEN}`
       },
     });
     return await response.json();
   }
 
-  static async rateMovie(id, body) {
+  static async rateMovie(id, body, token) {
     const response = await fetch(`${API_URL}/movies/${id}/rate_movie/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${TOKEN}`
+        'Authorization': `Token ${token}`
       },
       body: JSON.stringify(body)
     });
@@ -31,12 +30,12 @@ export class API {
     return response;
   }
 
-  static async updateMovie(id, body) {
+  static async updateMovie(id, body, token) {
     const response = await fetch(`${API_URL}/movies/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${TOKEN}`
+        'Authorization': `Token ${token}`
       },
       body: JSON.stringify(body)
     });
@@ -48,12 +47,12 @@ export class API {
     return response;
   }
 
-  static async createMovie(body) {
+  static async createMovie(body, token) {
     const response = await fetch(`${API_URL}/movies/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${TOKEN}`
+        'Authorization': `Token ${token}`
       },
       body: JSON.stringify(body)
     });
@@ -65,12 +64,12 @@ export class API {
     return await response.json();
   }
 
-  static async deleteMovie(id) {
+  static async deleteMovie(id, token) {
     const response = await fetch(`${API_URL}/movies/${id}/`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Token ${TOKEN}`
+        'Authorization': `Token ${token}`
       },
     });
 
