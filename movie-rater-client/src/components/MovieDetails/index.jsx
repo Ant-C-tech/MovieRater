@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as lightStar } from '@fortawesome/free-regular-svg-icons'
@@ -9,8 +9,11 @@ import { Button } from "react-bulma-components";
 
 import { getMovieById } from '../../utils/getMovieById';
 import { API } from '../../api';
+import { TokenContext } from '../../App';
 
 export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreatingMovie }) => {
+  const { token } = useContext(TokenContext);
+
   const [temporaryUserRating, setTemporaryUserRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
 
@@ -21,7 +24,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreating
 
   const rateMovie = async (movieId) => {
     try {
-      await API.rateMovie(movieId, { stars: userRating });
+      await API.rateMovie(movieId, { stars: userRating }, token);
       const movies = await API.getMovies();
       setMovies(movies);
       setIsCreatingMovie(false);
@@ -32,7 +35,7 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreating
 
   if (selectedMovieId) {
     return (
-      <div className="movie-details">
+      <div className="movie-details" style={{ borderBottom: token ? '1px solid #ccc' : 'none' }}>
         <h2 className="movie-details-title">Movie Details</h2>
         <div className='movie-details-content'>
           <p className='movie-details-content-description'>
@@ -51,30 +54,32 @@ export const MovieDetails = ({ selectedMovieId, movies, setMovies, setIsCreating
             <b>Number of ratings: {getMovieById(selectedMovieId, movies).number_of_ratings}</b>
           </p>
         </div>
-        <div className='movie-details-user-rating-control'>
-          <div className='movie-details-user-stars'>
-            {Array.from({ length: 10 }).map((_, index) => {
-              return (
-                <FontAwesomeIcon
-                  className='star-icon user-rating-stars'
-                  key={index} icon={temporaryUserRating > index ? solidStar : lightStar}
-                  onMouseEnter={() => setTemporaryUserRating(index + 1)}
-                  onMouseLeave={() => setTemporaryUserRating(userRating)}
-                  onClick={() => {
-                    setTemporaryUserRating(index + 1)
-                    setUserRating(index + 1)
-                  }
-                  } />
-              )
-            })}
+        {token &&
+          <div className='movie-details-user-rating-control'>
+            <div className='movie-details-user-stars'>
+              {Array.from({ length: 10 }).map((_, index) => {
+                return (
+                  <FontAwesomeIcon
+                    className='star-icon user-rating-stars'
+                    key={index} icon={temporaryUserRating > index ? solidStar : lightStar}
+                    onMouseEnter={() => setTemporaryUserRating(index + 1)}
+                    onMouseLeave={() => setTemporaryUserRating(userRating)}
+                    onClick={() => {
+                      setTemporaryUserRating(index + 1)
+                      setUserRating(index + 1)
+                    }
+                    } />
+                )
+              })}
+            </div>
+            <Button className='button-custom' onClick={
+              () => rateMovie(selectedMovieId)}
+            >
+              <FontAwesomeIcon className='button-icon' icon={solidHalfStar} />
+              Rate the Movie
+            </Button>
           </div>
-          <Button className='button-custom' onClick={
-            () => rateMovie(selectedMovieId)}
-          >
-            <FontAwesomeIcon className='button-icon' icon={solidHalfStar} />
-            Rate the Movie
-          </Button>
-        </div>
+        }
       </div>
     )
   } else {

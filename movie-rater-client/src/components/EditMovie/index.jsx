@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Button } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFloppyDisk as solidFloppy } from '@fortawesome/free-solid-svg-icons'
@@ -6,8 +6,11 @@ import { faFloppyDisk as solidFloppy } from '@fortawesome/free-solid-svg-icons'
 import { API } from '../../api';
 import { getMovieById } from '../../utils/getMovieById';
 import { MovieForm } from '../MovieForm';
+import { TokenContext } from '../../App';
 
 export const EditMovie = ({ editedMovieId, setEditedMovieId, movies, setMovies, setIsCreatingMovie }) => {
+  const { token } = useContext(TokenContext);
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -26,7 +29,7 @@ export const EditMovie = ({ editedMovieId, setEditedMovieId, movies, setMovies, 
       description
     }
     try {
-      await API.updateMovie(editedMovieId, updatedMovie);
+      await API.updateMovie(editedMovieId, updatedMovie, token);
       const updatedMovies = movies.map(movie => {
         if (movie.id === updatedMovie.id) {
           return updatedMovie;

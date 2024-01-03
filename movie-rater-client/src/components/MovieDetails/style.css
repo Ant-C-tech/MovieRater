@@ -5,7 +5,7 @@
 .movie-details-content {
   margin-bottom: 20px;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 
 .movie-details-title {
