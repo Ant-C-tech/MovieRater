@@ -1,16 +1,15 @@
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus as solidPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Columns } from 'react-bulma-components';
-
+import { useCookies } from 'react-cookie';
 
 import { MovieList, MovieDetails, EditMovie, CreateMovie } from '../../components/';
 import { API } from '../../api/';
-import { TokenContext } from '../../App';
 
 export const Main = () => {
-  const { token } = useContext(TokenContext);
+  const [cookies] = useCookies(['user-token']);
 
   const [movies, setMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
@@ -28,7 +27,7 @@ export const Main = () => {
 
   return (
     <>
-      {token && <Button className='button-success' color="success" onClick={() => {
+      {cookies['user-token'] && <Button className='button-success' color="success" onClick={() => {
         setSelectedMovieId(null);
         setEditedMovieId(null);
         setIsCreatingMovie(true);

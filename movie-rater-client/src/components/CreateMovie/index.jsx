@@ -1,14 +1,14 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Button } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus as solidPlus } from '@fortawesome/free-solid-svg-icons'
+import { useCookies } from 'react-cookie';
 
 import { API } from '../../api';
 import { MovieForm } from '../MovieForm';
-import { TokenContext } from '../../App';
 
 export const CreateMovie = ({ movies, setMovies, setIsCreatingMovie }) => {
-  const { token } = useContext(TokenContext);
+  const [cookies] = useCookies(['user-token']);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -19,7 +19,7 @@ export const CreateMovie = ({ movies, setMovies, setIsCreatingMovie }) => {
       description
     }
     try {
-      const movie = await API.createMovie(newMovie, token);
+      const movie = await API.createMovie(newMovie, cookies['user-token']);
       setMovies([...movies, movie]);
     } catch (error) {
       console.error('There was a problem with the create operation: ', error);
