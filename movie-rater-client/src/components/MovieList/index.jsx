@@ -1,14 +1,13 @@
 import "./style.css";
 
-import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck as solidCheck } from '@fortawesome/free-solid-svg-icons'
 import { faEdit as solidEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash as solidTrash } from '@fortawesome/free-solid-svg-icons'
 import { Button } from "react-bulma-components";
+import { useCookies } from 'react-cookie';
 
 import { API } from '../../api';
-import { TokenContext } from '../../App';
 
 export const MovieList = ({
   movies,
@@ -17,11 +16,12 @@ export const MovieList = ({
   setSelectedMovieId,
   setEditedMovieId,
   setIsCreatingMovie }) => {
-  const { token } = useContext(TokenContext);
+
+  const [cookies] = useCookies(['user-token']);
 
   const deleteMovie = async (movieId) => {
     try {
-      await API.deleteMovie(movieId, token);
+      await API.deleteMovie(movieId, cookies['user-token']);
       setMovies(movies.filter(m => m.id !== movieId));
       setSelectedMovieId(null);
       setEditedMovieId(null);
@@ -36,8 +36,8 @@ export const MovieList = ({
       className='movie-list-wrapper'>
       <h2 className="movie-list-title">Movie List</h2>
       <ul className='movie-list' style={{
-        height: token ? '72vh' : '78vh',
-        maxHeight: token ? '72vh' : '78vh',
+        height: cookies['user-token'] ? '72vh' : '78vh',
+        maxHeight: cookies['user-token'] ? '72vh' : '78vh',
       }}>
         {movies && movies.map(movie => {
           return (
@@ -57,7 +57,7 @@ export const MovieList = ({
                   {movie.title}
                 </span>
               </div>
-              {token && <div className="movie-controls">
+              {cookies['user-token'] && <div className="movie-controls">
                 <Button className='button-custom' onClick={() => {
                   setSelectedMovieId(movie.id)
                   setEditedMovieId(movie.id)

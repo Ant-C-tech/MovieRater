@@ -1,31 +1,32 @@
 import "./style.css";
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket as solidRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import { Button, Form, Box } from 'react-bulma-components';
+import { useCookies } from 'react-cookie';
 
 import { API } from '../../api/';
-import { TokenContext } from '../../App';
+
 
 const { Field, Label, Input, Control } = Form;
 
 export const Auth = () => {
-  const { token, setToken } = useContext(TokenContext);
+  const [cookies, setCookie] = useCookies(['user-token']);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    if (token) {
+    if (cookies['user-token']) {
       window.location.href = '/';
     }
-  }, [token]);
+  }, [cookies]);
 
   const loginUser = async () => {
     try {
       const response = await API.loginUser({ username, password });
-      setToken(response.token);
+      setCookie('user-token', response.token);
     } catch (error) {
       console.error('There was a problem with the login operation: ', error);
     }

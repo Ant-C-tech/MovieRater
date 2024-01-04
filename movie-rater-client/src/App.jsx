@@ -2,7 +2,6 @@ import 'normalize.css';
 import 'bulma/css/bulma.min.css';
 import './App.css';
 
-import { useState, createContext, useEffect } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -10,6 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilm as solidFilm } from '@fortawesome/free-solid-svg-icons'
 import { Box } from 'react-bulma-components';
+import { CookiesProvider } from 'react-cookie';
 
 import { Main, Auth } from './pages/';
 
@@ -24,11 +24,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-export const TokenContext = createContext(null);
-
 function App() {
-
-  const [token, setToken] = useState(null);
 
   return (
     <div className="app">
@@ -43,9 +39,9 @@ function App() {
         color: '#ccc',
         textAlign: 'center'
       }}>
-        <TokenContext.Provider value={{ token, setToken }}>
+        <CookiesProvider>
           <RouterProvider router={router} />
-        </TokenContext.Provider>
+        </CookiesProvider>
       </Box>
     </div >
   );
