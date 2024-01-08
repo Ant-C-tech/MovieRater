@@ -1,3 +1,4 @@
+import "./style.css";
 
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -5,7 +6,7 @@ import { faPlus as solidPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Columns } from 'react-bulma-components';
 import { useCookies } from 'react-cookie';
 
-import { MovieList, MovieDetails, EditMovie, CreateMovie } from '../../components/';
+import { MovieList, MovieDetails, EditMovie, CreateMovie, LoginControls } from '../../components/';
 import { API } from '../../api/';
 
 export const Main = () => {
@@ -26,15 +27,17 @@ export const Main = () => {
   }, []);
 
   return (
-    <>
-      {cookies['user-token'] && <Button className='button-success' color="success" onClick={() => {
-        setSelectedMovieId(null);
-        setEditedMovieId(null);
-        setIsCreatingMovie(true);
-      }
-      }>
-        <FontAwesomeIcon className='button-icon' icon={solidPlus} />
-      </Button>
+    <main className='main'>
+      <LoginControls />
+      {cookies['user-token'] &&
+        <Button className='button-success' color="success" onClick={() => {
+          setSelectedMovieId(null);
+          setEditedMovieId(null);
+          setIsCreatingMovie(true);
+        }
+        }>
+          <FontAwesomeIcon className='button-icon' icon={solidPlus} />
+        </Button>
       }
       <Columns>
         <Columns.Column>
@@ -73,6 +76,6 @@ export const Main = () => {
           }
         </Columns.Column>
       </Columns>
-    </>
+    </main>
   )
 };
