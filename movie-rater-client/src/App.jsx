@@ -29,7 +29,9 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className='app-title'> Movie  <FontAwesomeIcon className='app-title-logo' icon={solidFilm} />  Rater</h1>
+        <h1 className='app-title'>
+          Movie  <FontAwesomeIcon className='app-title-logo' icon={solidFilm} />  Rater
+        </h1>
       </header>
       <Box style={{
         height: '90vh',
